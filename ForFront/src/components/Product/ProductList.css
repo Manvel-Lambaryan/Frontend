@@ -1,0 +1,44 @@
+.product-list-container {
+  margin-bottom: 30px;
+}
+
+.product-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background: #222;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  width: 180px;
+}
+
+.product-card img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-card strong {
+  display: block;
+  margin-top: 5px;
+}
+
+.product-card button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.product-card button:hover {
+  opacity: 0.8;
+}
