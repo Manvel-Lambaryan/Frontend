@@ -1,0 +1,19 @@
+{
+  "all": [
+    {
+      "id": "101",
+      "name": "James",
+      "gender": "male"
+    },
+    {
+      "id": "102",
+      "name": "Karina",
+      "gender": "female"
+    },
+    {
+      "id": "0a79",
+      "name": "Mno",
+      "gender": "male"
+    }
+  ]
+}
