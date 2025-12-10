@@ -1,12 +1,18 @@
-export const User = ({ users }) => {
+export function User({ users, onRemove }) {
   return (
-    <div className="user-wrapper">
+    <div className="user-list">
       {users.map((u) => (
         <div key={u.id} className="user-card">
-          <div className="user-name">{u.name}</div>
-          <div className="user-gender">{u.gender}</div>
+          <div className="user-left">
+            <span className="user-name">{u.name}</span>
+            <span className="user-gender">{u.gender}</span>
+          </div>
+
+          <button className="delete-btn" onClick={() => onRemove(u.id)}>
+            Delete
+          </button>
         </div>
       ))}
     </div>
   );
-};
+}

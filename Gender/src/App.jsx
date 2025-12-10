@@ -4,9 +4,9 @@ import "./index.css";
 
 export default function App() {
   const [users, setUsers] = useState([]);
-  const [name, setName] = useState("");            // 🔹 input-ի համար
-  const [activeGender, setActiveGender] = useState("all"); // 🔹 filter-ի համար
-  const [selectedGender, setSelectedGender] = useState("male"); // user add gender
+  const [name, setName] = useState("");
+  const [activeGender, setActiveGender] = useState("all");
+  const [selectedGender, setSelectedGender] = useState("male");
 
   useEffect(() => {
     fetch("http://localhost:3000/all")
@@ -26,6 +26,7 @@ export default function App() {
     const newUserData = {
       name,
       gender: selectedGender,
+      id: Math.random().toString(16).slice(2, 6)
     };
 
     const res = await fetch("http://localhost:3000/all", {
@@ -39,18 +40,25 @@ export default function App() {
     setName("");
   };
 
+  const removeUser = async (id) => {
+    await fetch(`http://localhost:3000/all/${id}`, {
+      method: "DELETE",
+    });
+
+    setUsers(users.filter((u) => u.id !== id));
+  };
+
   return (
     <div className="container">
       <h1 className="title">User Filter</h1>
 
-      {/* ADD USER */}
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Enter name"
       />
 
-      <select 
+      <select
         value={selectedGender}
         onChange={(e) => setSelectedGender(e.target.value)}
       >
@@ -60,7 +68,6 @@ export default function App() {
 
       <button onClick={addUser}>Add User</button>
 
-      {/* FILTER BUTTONS */}
       <div className="btn-group">
         <button
           className={activeGender === "all" ? "btn active" : "btn"}
@@ -84,7 +91,7 @@ export default function App() {
         </button>
       </div>
 
-      <User users={render()} />
+      <User users={render()} onRemove={removeUser} />
     </div>
   );
 }
